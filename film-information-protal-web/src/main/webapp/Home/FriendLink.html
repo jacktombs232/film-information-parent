@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap-3.3.4/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="../Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="../bootstrap-3.3.4/dist/js/bootstrap.min.js"></script>
+    <script src="../Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <title></title>
+    <style>
+        .row{
+            margin-left: 20px;
+            margin-right: 20px;;
+        }
+        .line-center{
+            line-height:50px;
+            text-align: center;
+        }
+        .row input{
+            width: 50px;
+        }
+        .list-group-item:hover{
+            background: #27ae60;
+
+        }
+        .list-group-item div:first-child:hover{
+
+            cursor: pointer;
+        }
+        th{
+            text-align: right;
+            width: 10%;;
+            padding: 10px;
+        }
+        td{
+            text-align: left;
+            width: 30%;;
+            padding: 10px;
+        }
+        .table th{
+            text-align: center;
+        }
+        .table td{
+            text-align: center;
+        }
+    </style>
+    <script>
+        function myClick(n){
+            location.href = "OrderInfo.html";
+        }
+        function btnClick(){
+            alert("btn");
+            return false;
+        }
+        $(function(){
+
+        })
+    </script>
+    <script>
+        $(function(){
+            $('#myTabs a').click(function (e) {
+
+                $(this).tab('show')
+            });
+        })
+    </script>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <!-- 分页组件开始 -->
+    <script src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+    <!-- 分页组件结束 -->
+
+    <script type="text/javascript" src="../js/base_pagination.js">  </script>
+    <script type="text/javascript" src="../js/service/filmService.js">  </script>
+    <script type="text/javascript" src="../js/service/typeService.js">  </script>
+    <script type="text/javascript" src="../js/service/filmDescService.js">  </script>
+    <script type="text/javascript" src="../js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="../js/controller/filmController.js">  </script>
+</head>
+<body ng-app="film_information" ng-controller="filmController" ng-init="reloadList();getDescForFilm()">
+<!--content-->
+<div class="container">
+    <div class="row">
+        <div class="row thumbnail" id="CommentArea">
+            <div class="has-feedback">
+                电影名： <input ng-model="searchEntity.chineseName" >
+                电影英文名：<input ng-model="searchEntity.foreignName">
+                导演：<input ng-model="searchEntity.director">
+                编剧：<input ng-model="searchEntity.screenwriter">
+                演员：<input ng-model="searchEntity.toStar">
+                类型：<input ng-model="searchEntity.filmType">
+                制作地区：<input ng-model="searchEntity.productionCountry">
+                语言：<input ng-model="searchEntity.language">
+                <button ng-click="reloadList()">查询</button>
+            </div>
+        </div>
+        <div class="row thumbnail" id="searchDataArea">
+            <div class="col-sm-4 col-md-3"  ng-repeat="data in list">
+                <div class="thumbnail" >
+                    <a href="BookInfo.html">
+                        <img style="width: 100%; height: 200px; display: block;" alt="100%x200" ng-src="{{getImage(data.filmId)}}" data-holder-rendered="true">
+                        <div class="caption center">
+                            <h3>{{data.chineseName}}</h3>
+                            <p><span>导演:</span><span>{{data.director}}</span></p>
+                            <p><a class="btn btn-primary btn-block" role="button" href="BookInfo.html">查看详情</a></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- 分页 -->
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </div>
+</div>
+
+</body>
+</html>

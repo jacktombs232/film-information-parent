@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap-3.3.4/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="../bootstrap-3.3.4/dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../bootstrap-3.3.4/dist/js/bootstrap.min.js"></script>
+    <script src="../Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <title></title>
+    <style>
+        .row{
+            margin-top: 20px;;
+        }
+        .center{
+            text-align: center;
+        }
+        .pagination{
+            background: #cccccc;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#myTabs a').click(function (e) {
+                $(this).tab('show')
+            });
+        })
+    </script>
+    <script type="text/javascript">
+        function SetIFrameHeight(){
+            var iframeid=document.getElementById("iframe"); //iframe id
+            if (document.getElementById){
+                iframeid.height =document.documentElement.clientHeight;
+            }
+        }
+
+    </script>
+
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/service/loginService.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/loginController.js"></script>
+</head>
+<body ng-app="film_information" ng-controller="loginController" ng-init="login()">
+<!-- Static navbar -->
+<div class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">这什么东西</span>
+            </button>
+            <a class="navbar-brand" href="Index.html"  target="iframe">影视信息查询平台</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="Index.html" target="iframe">首页</a></li>
+                <li ng-show="nickName"><a href="Order.html"  target="iframe">我的评论</a></li>
+                <li ng-show="nickName"><a href="UserInfo.html"  target="iframe">个人中心</a></li>
+                <li><a href="FriendLink.html"  target="iframe">友情链接</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right hidden-sm">
+                <li ng-show="nickName==null"><a href="../login.html"  >登录</a></li>
+                <li ng-show="nickName">
+
+                    <span>{{nickName}}</span>
+                    <a a href="../logout" >登出</a>
+                </li>
+                <!--
+                <li>
+                    <a href="Cart.html">
+                        <span class="glyphicon glyphicon-shopping-cart">购物车</span>
+                    </a>
+                </li>-->
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+<!--content-->
+<div class="container" width="100%">
+    <iframe width="100%" id="iframe" name="iframe"	onload="SetIFrameHeight()"
+            frameborder="0" src=""></iframe>
+</div>
+
+<!--footer-->
+<div class="navbar navbar-default navbar-static-bottom">
+    版权声明区
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+var app = angular.module('film_information',['pagination']);/*构建模块*/

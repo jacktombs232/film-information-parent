@@ -1,0 +1,1 @@
+var app = angular.module('film_information',[]);/*构建模块*/

@@ -1,0 +1,8 @@
+# Project exclude paths
+/film-information-backstage-web/target/
+/film-information-common/target/
+/film-information-dao/target/
+/film-information-pojo/target/
+/film-information-protal-web/target/
+/film-information-service-interface/target/
+/film-information-service-provide/target/

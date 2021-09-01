@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap-3.3.4/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="../bootstrap-3.3.4/dist/js/jquery-1.11.3.min.js"></script>
+    <script src="../bootstrap-3.3.4/dist/js/bootstrap.min.js"></script>
+    <script src="../Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <title></title>
+    <style>
+       .row{
+           margin-top: 20px;;
+        }
+        .center{
+            text-align: center;
+        }
+        .pagination{
+            background: #cccccc;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#myTabs a').click(function (e) {
+                $(this).tab('show')
+            });
+        })
+    </script>
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js">  </script>
+    <!-- 分页组件开始 -->
+    <script src="../plugins/angularjs/pagination.js"></script>
+    <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
+    <!-- 分页组件结束 -->
+
+    <script type="text/javascript" src="../js/base_pagination.js">  </script>
+    <script type="text/javascript" src="../js/service/filmService.js">  </script>
+    <script type="text/javascript" src="../js/service/typeService.js">  </script>
+    <script type="text/javascript" src="../js/service/filmDescService.js">  </script>
+    <script type="text/javascript" src="../js/controller/baseController.js">  </script>
+    <script type="text/javascript" src="../js/controller/filmController.js">  </script>
+</head>
+<body ng-app="film_information" ng-controller="filmController" ng-init="findfilmTypeList();getDescForFilm()" >
+<!--content-->
+<div class="container">
+    <div class="jumbotron">
+        <h1>影视信息查询平台</h1>
+        <p>...</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">了解更多</a></p>
+    </div>
+
+    <ul class="nav nav-tabs" id="myTabs">
+        <li ng-repeat="data in filmTypeList"><a ng-click="EnterSearch(data)">{{data.text}}</a></li>
+    </ul>
+    <div class="row">
+        <div class="col-sm-4 col-md-3"  ng-repeat="data in list">
+            <div class="thumbnail" >
+                <a href="BookInfo.html">
+                    <img style="width: 100%; height: 200px; display: block;" alt="100%x200" ng-src="{{getImage(data.filmId)}}" data-holder-rendered="true">
+                </a>
+                <div class="caption center">
+                    <h3>电影名：</h3>{{data.chineseName}}
+                    <p><span>导演:</span><span>{{data.director}}</span></p>
+                    <p><a class="btn btn-primary btn-block" role="button" href="BookInfo.html">查看详情</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="center">
+        <!-- 分页 -->
+        <tm-pagination conf="paginationConf"></tm-pagination>
+    </nav>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.michael.mapper.FilmDescMapper">
+  <resultMap id="BaseResultMap" type="com.michael.pojo.FilmDesc">
+    <result column="film_id" jdbcType="BIGINT" property="filmId" />
+    <result column="film_image" jdbcType="VARCHAR" property="filmImage" />
+    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    film_id, film_image, introduce
+  </sql>
+  <select id="selectByExample" parameterType="com.michael.pojo.FilmDescExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from film_desc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.michael.pojo.FilmDescExample">
+    delete from film_desc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.michael.pojo.FilmDesc">
+    insert into film_desc (film_id, film_image, introduce
+      )
+    values (#{filmId,jdbcType=BIGINT}, #{filmImage,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.michael.pojo.FilmDesc">
+    insert into film_desc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="filmId != null">
+        film_id,
+      </if>
+      <if test="filmImage != null">
+        film_image,
+      </if>
+      <if test="introduce != null">
+        introduce,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="filmId != null">
+        #{filmId,jdbcType=BIGINT},
+      </if>
+      <if test="filmImage != null">
+        #{filmImage,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null">
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.michael.pojo.FilmDescExample" resultType="java.lang.Long">
+    select count(*) from film_desc
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update film_desc
+    <set>
+      <if test="record.filmImage != null">
+        film_image = #{record.filmImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduce != null">
+        introduce = #{record.introduce,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <where>
+      <if test="record.filmId != null">
+        film_id = #{record.filmId,jdbcType=BIGINT},
+      </if>
+    </where>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update film_desc
+    set
+    film_image = #{record.filmImage,jdbcType=VARCHAR},
+    introduce = #{record.introduce,jdbcType=VARCHAR}
+    where film_id = #{record.filmId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+
+  <delete id="deleteByFilmId" parameterType="java.lang.Long">
+    delete  from film_desc where film_id = #{id}
+  </delete>
+
+  <update id="updateByFilmDesc" parameterType="com.michael.pojo.FilmDesc">
+    update film_desc
+    set
+    film_image=#{filmImage},
+    introduce=#{introduce}
+    where film_id = #{filmId}
+  </update>
+
+  <select id="selectByFilmId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from film_desc where film_id = #{id}
+  </select>
+</mapper>

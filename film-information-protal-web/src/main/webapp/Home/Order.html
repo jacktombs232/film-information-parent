@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../bootstrap-3.3.4/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../Flat-UI-master/dist/css/flat-ui.min.css"/>
+    <script src="../Flat-UI-master/dist/js/vendor/jquery.min.js"></script>
+    <script src="../bootstrap-3.3.4/dist/js/bootstrap.min.js"></script>
+    <script src="../Flat-UI-master/dist/js/flat-ui.min.js"></script>
+    <title></title>
+    <style>
+        .row{
+            margin-left: 20px;
+            margin-right: 20px;;
+        }
+        .line-center{
+            line-height:50px;
+            text-align: center;
+        }
+        .row input{
+            width: 50px;
+        }
+        .list-group-item:hover{
+            background: #27ae60;
+
+        }
+        .list-group-item div:first-child:hover{
+
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function myClick(n){
+           location.href = "BookInfo.html";
+        }
+        function btnClick(){
+            alert("btn");
+            return false;
+        }
+        $(function(){
+
+        })
+    </script>
+
+    <script type="text/javascript" src="../plugins/angularjs/angular.min.js"></script>
+
+
+    <script type="text/javascript" src="../js/base.js"></script>
+    <script type="text/javascript" src="../js/service/loginService.js"></script>
+    <script type="text/javascript" src="../js/service/evaluateService.js"></script>
+    <script type="text/javascript" src="../js/controller/baseController.js"></script>
+    <script type="text/javascript" src="../js/controller/evaluateController.js"></script>
+</head>
+<body ng-app="film_information" ng-controller="evaluateController" ng-init="login();reloadList()">
+<!--content-->
+<div class="container">
+    <div class="row thumbnail center">
+        <div class="col-sm-12">
+            <h1 class="text-center" style="margin-bottom: 30px">我的评论</h1>
+        </div>
+        <div class="col-sm-12 thumbnail">
+            <div class="col-sm-3 line-center">电影名</div>
+            <div class="col-sm-2 line-center">评分等级</div>
+            <div class="col-sm-2 line-center">评论详情 </div>
+            <div class="col-sm-2 line-center">评论时间</div>
+            <div class="col-sm-3 line-center">操作</div>
+        </div>
+        <div class="list-group">
+
+            <div class="col-sm-12  list-group-item" ng-repeat="data in list" >
+                {{data.evaluateId}}
+                <div class="col-sm-3 line-center" onclick="myClick(1)">{{data.filmId}}</div>
+                <div class="col-sm-2 line-center">{{data.grade}}</div>
+                <div class="col-sm-2 line-center">{{data.comment}}</div>
+                <div class="col-sm-2 line-center">{{data.evaluateDate}}</div>
+                <div class="col-sm-3 line-center">
+                    <button class="btn btn-danger" ng-click="dele(data.evaluateId)">删除评论</button>
+                </div>
+            </div>
+
+    </div>
+    </div>
+</div>
+</body>
+</html>
