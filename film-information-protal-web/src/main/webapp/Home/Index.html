@@ -32,7 +32,6 @@
     <script src="../plugins/angularjs/pagination.js"></script>
     <link rel="stylesheet" href="../plugins/angularjs/pagination.css">
     <!-- 分页组件结束 -->
-
     <script type="text/javascript" src="../js/base_pagination.js">  </script>
     <script type="text/javascript" src="../js/service/filmService.js">  </script>
     <script type="text/javascript" src="../js/service/typeService.js">  </script>
@@ -55,7 +54,7 @@
     <div class="row">
         <div class="col-sm-4 col-md-3"  ng-repeat="data in list">
             <div class="thumbnail" >
-                <a href="BookInfo.html">
+                <a ng-href="BookInfo.html?filmId={{data.filmId}}">
                     <img style="width: 100%; height: 200px; display: block;" alt="100%x200" ng-src="{{getImage(data.filmId)}}" data-holder-rendered="true">
                 </a>
                 <div class="caption center">

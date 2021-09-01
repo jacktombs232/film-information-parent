@@ -1,5 +1,5 @@
  //控制层 
-app.controller('filmController' ,function($scope,$controller   ,filmService,typeService,filmDescService){
+app.controller('InfoController' ,function($scope,$controller,loginService,userService,filmService,typeService,filmDescService,evaluateService){
 	
 	$controller('baseController',{$scope:$scope});//继承
 	
@@ -33,29 +33,25 @@ app.controller('filmController' ,function($scope,$controller   ,filmService,type
 		);				
 	}
 	//保存 
-	$scope.save=function(){				
-		var serviceObject;//服务层对象
-		if($scope.entity.filmId!=null){//如果有ID
-			serviceObject=filmService.update( $scope.entity ); //修改
-			console.log("修改");
-		}else{
-			serviceObject=filmService.add( $scope.entity  );//增加
-			console.log("增加");
-			console.log($scope.entity);
-		}
-		serviceObject.success(
-			function(response){
-				if(response.success){
-					//重新查询
-		        	$scope.reloadList();//重新加载
-				}else{
-					alert(response.message);
+	$scope.save=function(){
+
+		if($scope.evalData.userId!=null) {
+			$scope.evalData.filmId=$scope.film_id
+			evaluateService.add($scope.evalData).success(
+				function (response) {
+					if (response.success){
+						$scope.evalData.comment=null;
+						//重新查询
+						$scope.reloadList();//重新加载
+					} else{
+						alert(response.message);
+					}
 				}
-			}
-		);
+			);
+		}else {
+			alert("登录后发布评论");
+		}
 	}
-	
-	 
 	//批量删除 
 	$scope.dele=function(){
 		//获取选中的复选框			
@@ -72,10 +68,12 @@ app.controller('filmController' ,function($scope,$controller   ,filmService,type
 	
 	//搜索
 	$scope.search=function(page,rows){			
-		filmService.search(page,rows,$scope.searchEntity).success(
+		evaluateService.search(page,rows,$scope.searchEntity).success(
 			function(response){
 				$scope.list=response.rows;	
 				$scope.paginationConf.totalItems=response.total;//更新总记录数
+
+				console.log($scope.list);
 			}			
 		);
 	}
@@ -124,7 +122,6 @@ app.controller('filmController' ,function($scope,$controller   ,filmService,type
 		filmDescService.findAll().success(
 			function(response){
 				$scope.filmForDesc = response;
-
 			}
 		)
 	}
@@ -145,9 +142,47 @@ app.controller('filmController' ,function($scope,$controller   ,filmService,type
 		}
 	}
 
+	$scope.UserInformation=[];
+
+	$scope.getUserInformation=function(){
+		userService.findAll().success(
+			function(response){
+				$scope.UserInformation = response;
+				console.log($scope.UserInformation);
+			}
+		)
+	}
+
+	$scope.getNickname=function(data){
+		for(var i =0;i<$scope.UserInformation.length;i++){
+			if(data==$scope.UserInformation[i].userId){
+				return $scope.UserInformation[i].nicknmae;
+			}
+		}
+	}
+
+
 
 	$scope.setInformation=function(){
-		film_id = (window.location.href.split("?")[1]).split("=")[1];
-		$scope.findOne(film_id);
+		$scope.film_id = (window.location.href.split("?")[1]).split("=")[1];
+		$scope.searchEntity={filmId:$scope.film_id};
+		$scope.findOne($scope.film_id);
+		$scope.reloadList();
+	}
+
+	$scope.evalData={};
+
+
+	$scope.login=function(){
+		loginService.login().success(
+			function(response){
+				userService.findOne(response.userId).success(
+					function(response){
+						$scope.evalData.userId= response.userId;
+						console.log("login:"+$scope.evalData.userId);
+					}
+				);
+			}
+		)
 	}
 });	

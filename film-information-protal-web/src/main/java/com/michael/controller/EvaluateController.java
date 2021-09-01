@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -46,6 +47,8 @@ public class EvaluateController {
     @RequestMapping("/add")
     public Result add(@RequestBody Evaluate evaluate){
         try {
+            evaluate.setGrade(5);
+            evaluate.setEvaluateDate(new Date());
             evaluateService.add(evaluate);
             return new Result(true, "增加成功");
         } catch (Exception e) {

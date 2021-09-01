@@ -32,6 +32,16 @@ public class UserController {
 	private RedisTemplate redisTemplate;
 
 	/**
+	 * 返回全部列表
+	 * @return
+	 */
+	@RequestMapping("/findAll")
+	public List<User> findAll(){
+		List<User> list = userService.findAll();
+		return list;
+	}
+
+	/**
 	 * 增加
 	 * @param user
 	 * @return
