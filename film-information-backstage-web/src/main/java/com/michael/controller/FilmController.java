@@ -111,5 +111,11 @@ public class FilmController {
 	public PageResult search(@RequestBody Film film, int page, int rows  ){
 		return filmService.findPage(film, page, rows);		
 	}
+
+
+	@RequestMapping("/countNumber")
+	public Long countNumber(){
+		return filmService.countNumber();
+	}
 	
 }

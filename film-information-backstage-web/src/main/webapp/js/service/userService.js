@@ -28,5 +28,9 @@ app.service('userService',function($http){
 	//搜索
 	this.search=function(page,rows,searchEntity){
 		return $http.post('../user/search.do?page='+page+"&rows="+rows, searchEntity);
-	}    	
+	}
+
+	this.countNumber=function(){
+		return $http.get('../user/countNumber.do');
+	}
 });

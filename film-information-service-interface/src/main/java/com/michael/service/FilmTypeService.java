@@ -67,5 +67,13 @@ public interface FilmTypeService {
 	 * @return
 	 */
 	public  List<Map> findfilmTypeList();
-	
+
+
+	/**
+	 *
+	 * @return
+	 */
+	public Long countNumber();
+
+
 }

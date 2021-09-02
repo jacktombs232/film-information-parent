@@ -166,5 +166,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.selectByExample(example).get(0);
 	}
 
+	@Override
+	public Long countNumber() {
+		return userMapper.countByExample(null);
+	}
+
 
 }

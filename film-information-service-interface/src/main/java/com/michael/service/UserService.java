@@ -70,9 +70,17 @@ public interface UserService {
 
 	/**
 	 * 根据email获取实体
-	 * @param userName
+	 * @param user
 	 * @return
 	 */
 	public User findOne(User user);
-	
+
+
+	/**
+	 *
+	 * @return
+	 */
+	public Long countNumber();
+
+
 }

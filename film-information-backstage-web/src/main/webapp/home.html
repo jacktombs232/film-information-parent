@@ -8,7 +8,17 @@
 		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
         <link rel="stylesheet" href="css/style.css"/>
 <title>无标题文档</title>
-</head>
+
+    <script type="text/javascript" src="plugins/angularjs/angular.min.js"></script>
+
+    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="js/service/userService.js"></script>
+    <script type="text/javascript" src="js/service/filmService.js"></script>
+    <script type="text/javascript" src="js/service/evaluateService.js"></script>
+    <script type="text/javascript" src="js/service/typeService.js"></script>
+    <script type="text/javascript" src="js/controller/baseController.js"></script>
+    <script type="text/javascript" src="js/controller/briefController.js"></script>
+</head >
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -23,41 +33,24 @@
         <style type="text/css">
          html { overflow-x:hidden; }
         </style>
-<body >
+<body ng-app="film_information" ng-controller="briefController" ng-init="all()" >
 					<div class="page-content" id="tt">
 						<div class="page-header">
-							<h1>南京长江航道系统<small></small></h1>
+							<h1>影视信息平台<small></small></h1>
 						</div><!-- /.page-header -->
 						<div class="row">
 							<div class="col-xs-12">							
                                <div class="index_style">
-                                 <!--询价订单样式-->
                                  <div class="frame xjdd_style">
-                                   <span  class="title_name">询价订单</span>
+                                   <span  class="title_name">简略数据</span>
                                    <div class="content">
                                     <ul class="xj_list clearfix">
-                                     <li><label class="label_name"><a href="项目立项.html" >项目立项</a></label><div class="xinxi"></div></li>
-                                     <li><label class="label_name"><a href="未到期询价项目.html" >未到期询价项目</a></label><div class="xinxi"><b>10</b>个</div></li>
-                                     <li><label class="label_name"><a href="已到期询价项目.html" >已到期询价项目</a></label><div class="xinxi"><b>6</b>个</div></li>
-                                     <li><label class="label_name"><a href="暂存项目.html">暂存项目</a></label><div class="xinxi"><b>4</b>个</div></li>
-                                     <li><label class="label_name"><a href="模板维护.html">模板维护</a></label><div class="xinxi"></div></li>
+                                     <li><label class="label_name">用户量</label><div class="xinxi">{{usercount}}</div></li>
+                                     <li><label class="label_name">评论量</label><div class="xinxi">{{evaluatecount}}</div></li>
+                                     <li><label class="label_name">影视量</label><div class="xinxi">{{filmcount}}</div></li>
+                                     <li><label class="label_name">类型量</label><div class="xinxi">{{typecount}}</div></li>
                                     </ul>
-                                   
                                    </div>
-                                 </div>
-                                 <!--结束-->
-                                <!--订单管理样式-->
-                                 <div class="frame ddgl_style">
-                                 <span  class="title_name">订单管理</span>
-                                 <div class="content">
-                                  <ul class="xj_list clearfix">
-                                     <li><label class="label_name"><a href="待确认订单.html">待确认订单</a></label><div class="xinxi"><b>10</b>个</div></li>
-                                     <li><label class="label_name"><a href="待加油订单.html">待加油订单</a></label><div class="xinxi"><b>10</b>个</div></li>
-                                     <li><label class="label_name"><a href="已加油订单.html">已加油订单</a></label><div class="xinxi"><b>6</b>个</div></li>
-                                     <li><label class="label_name"><a href="已完结订单.html">已完结订单</a></label><div class="xinxi"><b>4</b>个</div></li>
-                                     <li><label class="label_name"><a href="异常订单处理.html">异常订单处理</a></label><div class="xinxi"><b>10</b>个</div></li>
-                                    </ul>
-                                 </div>
                                  </div>
                                  <!--结束-->
                                </div>

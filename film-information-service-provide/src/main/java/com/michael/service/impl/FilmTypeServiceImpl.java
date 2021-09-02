@@ -103,5 +103,10 @@ public class FilmTypeServiceImpl implements FilmTypeService {
 		return typeMapper.findfilmTypeList();
 	}
 
+	@Override
+	public Long countNumber() {
+		return typeMapper.countByExample(null);
+	}
+
 
 }

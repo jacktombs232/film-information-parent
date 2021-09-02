@@ -55,5 +55,12 @@ public interface EvaluateService {
 	 * @return
 	 */
 	public PageResult findPage(Evaluate evaluate, int pageNum, int pageSize);
+
+
+	/**
+	 *
+	 * @return
+	 */
+	public Long countNumber();
 	
 }

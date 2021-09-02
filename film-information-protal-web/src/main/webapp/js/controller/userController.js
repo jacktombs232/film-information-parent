@@ -108,6 +108,7 @@ app.controller('userController' ,function($scope,$controller   ,userService,logi
 			function(response){
 				if(response.success){
 					alert("状态："+response.message);
+					window.location.href="../login.html";
 				}else {
 					alert("状态："+response.message);
 				}

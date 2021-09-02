@@ -118,5 +118,11 @@ public class TypeController {
 	public List<Map> findfilmTypeList(){
 		return typeService.findfilmTypeList();
 	}
+
+
+	@RequestMapping("/countNumber")
+	public Long countNumber(){
+		return typeService.countNumber();
+	}
 	
 }

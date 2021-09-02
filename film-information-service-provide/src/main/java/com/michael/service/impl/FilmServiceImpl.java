@@ -198,4 +198,9 @@ public class FilmServiceImpl implements FilmService {
 		return null;
 	}
 
+	@Override
+	public Long countNumber() {
+		return filmMapper.countByExample(null);
+	}
+
 }

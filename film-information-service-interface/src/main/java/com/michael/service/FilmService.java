@@ -72,4 +72,12 @@ public interface FilmService {
 	 * @return
 	 */
 	public PageResult findPage(FilmGroup film, int pageNum, int pageSize);
+
+
+	/**
+	 *
+	 * @return
+	 */
+	public Long countNumber();
+
 }

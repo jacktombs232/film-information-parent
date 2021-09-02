@@ -81,4 +81,9 @@ public class evaluateServiceImpl implements EvaluateService {
             Page<Evaluate> page= (Page<Evaluate>)evaluateMapper.selectByExample(example);
         return new PageResult(page.getTotal(), page.getResult());
     }
+
+    @Override
+    public Long countNumber() {
+        return evaluateMapper.countByExample(null);
+    }
 }

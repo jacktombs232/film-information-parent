@@ -49,6 +49,13 @@ public class UserController {
 	@RequestMapping("/add")
 	public Result add(@RequestBody User user){
 		try {
+			User test = new User();
+			test.setEmail(user.getEmail());
+			test = userService.findOne(test);
+			if(test!=null){
+				return new Result(false,"邮箱已经注册");
+			}
+
 			userService.add(user);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
@@ -109,6 +116,11 @@ public class UserController {
 	@RequestMapping("/verification")
 	public Result verification(String Code,@RequestBody User user){
 		if(redisTemplate.boundValueOps(user.getEmail()).get().equals(Code)){
+			String password = user.getUserPassword();
+			user.setUserPassword(null);
+			user=userService.findOne(user);
+			user.setUserPassword(password);
+			userService.update(user);
 			return new Result(true,"验证成功");
 		}
 		return new Result(false,"验证码或者邮箱错误");

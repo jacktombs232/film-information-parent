@@ -113,5 +113,11 @@ public class UserController {
 	public PageResult search(@RequestBody User user, int page, int rows  ){
 		return userService.findPage(user, page, rows);		
 	}
+
+
+	@RequestMapping("/countNumber")
+	public Long countNumber(){
+		return userService.countNumber();
+	}
 	
 }

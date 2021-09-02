@@ -98,4 +98,12 @@ public class EvaluateController {
         return evaluateService.findPage(evaluate, page, rows);
     }
 
+
+
+    @RequestMapping("/countNumber")
+    public Long countNumber(){
+        return evaluateService.countNumber();
+    }
+
+
 }

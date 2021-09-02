@@ -33,4 +33,8 @@ app.service('typeService',function($http){
 	this.findfilmTypeList=function(){
 		return $http.get('../type/findfilmTypeList.do');
 	}
+
+	this.countNumber=function(){
+		return $http.get('../type/countNumber.do');
+	}
 });
